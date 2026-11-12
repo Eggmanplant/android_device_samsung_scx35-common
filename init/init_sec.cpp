@@ -41,6 +41,7 @@ enum device_variant {
 	G360H,
 	G360HU,
 	G361H,
+	T560,
 	T561,
 	G531BT,
 	G531H,
@@ -54,8 +55,10 @@ device_variant match(std::string bl)
                 return G360HU;
         } else if (bl.find("G361H") != std::string::npos) {
                 return G361H;
+        } else if (bl.find("T560") != std::string::npos) {
+                return T560;
         } else if (bl.find("T561") != std::string::npos) {
-                return T561;		
+                return T561;
         } else if (bl.find("G531BT") != std::string::npos) {
                 return G531BT;
         } else {
@@ -89,11 +92,17 @@ void vendor_load_properties()
 		        property_set("ro.product.model", "SM-G361H");
 		        property_set("ro.product.device", "coreprimeve3g");
 			break;
+		case T560:
+		        /* gtelwifixx */
+		        property_set("ro.product.model", "SM-T560");
+		        property_set("ro.product.device", "gtelwifi");
+		        property_set("ro.radio.noril", "yes");
+			break;
 		case T561:
 		        /* gtel3gxx */
 		        property_set("ro.product.model", "SM-T561");
 		        property_set("ro.product.device", "gtel3g");
-			break;	
+			break;
 		case G531BT:
 		        /* grandprimeve3gdtv */
         		property_set("ro.product.model", "SM-G531BT");
